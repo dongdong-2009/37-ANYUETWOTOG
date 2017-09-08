@@ -1,0 +1,2 @@
+echo "set the eth0 192.168.1.1"
+ifconfig eth0 192.168.1.1

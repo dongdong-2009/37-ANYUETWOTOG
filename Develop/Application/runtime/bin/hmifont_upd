@@ -1,0 +1,8 @@
+#/usr/bin/bash
+
+echo "upload start..." 
+
+#echo "upload the character lib to hmi..."
+upload_hl f /usr/potevio/font_basic_hmidefault_arial_8.bin 0
+
+echo "upload end..."

@@ -1,0 +1,2 @@
+cp /mnt/runtime/lib/libpu* /usr/lib
+

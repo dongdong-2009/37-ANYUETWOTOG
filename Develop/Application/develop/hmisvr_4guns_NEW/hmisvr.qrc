@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>qrc/icon/0.png</file>
+        <file>qrc/icon/1.png</file>
+        <file>qrc/PICS/gun.png</file>
+        <file>qrc/PICS/gun_top.png</file>
+        <file>qrc/icon/Buddy Chat.png</file>
+    </qresource>
+    <qresource prefix="/btn">
+        <file>qrc/btn/btn_bg.png</file>
+        <file>qrc/btn/button-02.png</file>
+        <file>qrc/btn/point.png</file>
+        <file>qrc/PICS/button.png</file>
+        <file>qrc/PICS/language.png</file>
+        <file>qrc/PICS/Pbtn.png</file>
+        <file>qrc/PICS/14.png</file>
+        <file>qrc/PICS/12.png</file>
+        <file>qrc/PICS/Pbtn_press.png</file>
+        <file>qrc/PICS/net.png</file>
+        <file>qrc/PICS/manager.png</file>
+        <file>qrc/PICS/main_2.png</file>
+        <file>qrc/PICS/main_1.png</file>
+        <file>qrc/PICS/main.png</file>
+    </qresource>
+    <qresource prefix="/background">
+        <file>qrc/PICS/backgroud_1.png</file>
+    </qresource>
+</RCC>

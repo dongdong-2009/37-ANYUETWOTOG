@@ -1,0 +1,6 @@
+pkill pubsvr
+pkill rfidsvr
+pkill mainsvr
+pkill datacsvr
+pkill hmisvr
+

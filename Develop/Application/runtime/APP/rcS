@@ -1,0 +1,75 @@
+#!/bin/sh
+
+
+#mount /etc/fstab-------------------------------
+/bin/mount -a
+#var--------------------------------------------
+/bin/mkdir -p  /var/run
+#mdev-------------------------------------------
+echo " Start mdev......"
+/bin/echo  /sbin/mdev >/proc/sys/kernel/hotplug
+/sbin/mdev -s 
+#for telnet-------------------------------------
+/bin/mkdir -p  /dev/pts
+/bin/mount  devpts  -t devpts  /dev/pts
+/sbin/telnetd &
+#for network------------------------------------
+mknod /dev/DBSH c 277 0
+#/sbin/ifconfig eth0 192.168.1.90
+ifconfig eth0 up
+##ifconfig eth1 up
+ifconfig eth0 192.168.1.20
+#tslib
+export TS_ROOT=/usr
+export TSLIB_TSDEVICE=/dev/event0
+export TSLIB_CALIBFILE=/etc/pointercal
+export TSLIB_CONFFILE=$TS_ROOT/etc/ts.conf
+export TSLIB_PLUGINDIR=$TS_ROOT/lib/ts
+export TSLIB_CONSOLEDEVICE=none
+export TSLIB_FBDEVICE=/dev/fb0
+export QWS_MOUSE_PROTO="TSLIB:/dev/event0"
+#qtset
+export QTDIR=/usr/local/Trolltech
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:${QTDIR}/bin
+export LD_LIBRARY_PATH=/lib:/usr/lib:${QTDIR}/lib
+#gpio
+cd /usr/lib
+insmod gpio_c.ko
+insmod Hope_PWM.ko
+mknod /dev/Hope_PWM c 251 0
+
+#set for can #############################3
+ip link set can0 type can tq 125 prop-seg 6 phase-seg1 7 phase-seg2 2 sjw 1
+echo 'set phase-seg1 and seg2'
+ip link set can0 type can bitrate 50000
+echo 'set bitrate 50000'
+ifconfig can0 up
+echo 'can0 up'
+ip link set can1 type can tq 125 prop-seg 6 phase-seg1 7 phase-seg2 2 sjw 1
+echo 'set phase-seg1 and seg2'
+ip link set can1 type can bitrate 50000
+echo 'set bitrate 50000'
+ifconfig can1 up
+echo 'can1 up'
+ip link set can2 type can tq 125 prop-seg 6 phase-seg1 7 phase-seg2 2 sjw 1
+echo 'set phase-seg1 and seg2'
+ip link set can2 type can bitrate 50000
+echo 'set bitrate 50000'
+ifconfig can2 up
+echo 'can2 up'
+#end of set for can #############################3
+
+cp /usr/APP/nfs /usr/sbin
+cp /usr/APP/time_sync /usr/sbin
+cp /usr/APP/ip /usr/ip
+
+cd /media/sda1/
+./update
+cd /usr/APP/appupdate/
+./update
+cd /usr/APP
+./update
+./media/sda1/update.sh
+./media/sda1/update.sh
+./entry &
+

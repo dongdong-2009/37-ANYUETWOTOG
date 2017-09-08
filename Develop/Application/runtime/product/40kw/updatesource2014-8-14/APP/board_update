@@ -1,0 +1,56 @@
+#/bin/sh
+
+#config...
+BOARDNAME="AT91SAM9G45"
+WORKDIR=
+
+
+#update......................................................................................
+echo "============================================================"
+echo " 			Update Application Begin    	         "
+echo "------------------------------------------------------------"
+
+echo -n "confirm update? [$BOARDNAME|$WORKDIR/] y/n : "
+read need1
+case $need1 in
+	y)  
+		#update content .................................................... 
+		echo "update begin -> [$WORKDIR/].."
+
+		echo "Delete $WORKDIR/usr/APP(data/log/local/config/module).."
+		rm -rf $WORKDIR/usr/APP/entry
+		rm -rf $WORKDIR/usr/APP/chargemainctl
+		rm -rf $WORKDIR/usr/APP/hmisvr
+		rm -rf $WORKDIR/usr/APP/time_sync
+		rm -rf $WORKDIR/usr/APP/nfs
+		rm -rf $WORKDIR/usr/APP/update
+
+		echo "update $WORKDIR/usr..."
+		cp -rf entry 	$WORKDIR/usr/APP
+		cp -rf chargemainctl 	$WORKDIR/usr/APP
+		cp -rf hmisvr 	$WORKDIR/usr/APP
+		cp -rf time_sync $WORKDIR/usr/APP
+		cp -rf nfs $WORKDIR/usr/APP
+		cp -rf update $WORKDIR/usr/APP
+		chmod 7777 $WORKDIR/usr/APP/*
+
+		
+		echo "update $WORKDIR/usr/lib(bin)..."
+		cp ../lib/* 	$WORKDIR/usr/lib/
+		cp  ../font/msyh.ttf $WORKDIR/usr/local/Trolltech/lib/fonts
+
+		echo "update $WORKDIR/usr/config..."
+		rm -rf $WORKDIR/usr/config/*
+		cp ../config/* 	$WORKDIR/usr/config/
+		#update content ....................................................				  
+		;;
+	*)     
+	       #do anything you wannt as default(直接回车)
+		echo "abort update ..."
+       ;;
+	esac
+echo "------------------------------------------------------------"
+echo " 			Update Application Ended    	         "
+echo "============================================================"
+ 
+ 

@@ -1,0 +1,19 @@
+#/usr/bin/bash
+
+echo "upload start..." 
+
+echo "upload the picture lib to hmi..."
+upload_hl p /usr/potevio/potevio-00.bin  0
+upload_hl p /usr/potevio/potevio-01.bin  1
+upload_hl p /usr/potevio/potevio-02.bin  2
+upload_hl p /usr/potevio/potevio-03.bin  3
+upload_hl p /usr/potevio/potevio-04.bin  4
+upload_hl p /usr/potevio/potevio-05.bin  5
+upload_hl p /usr/potevio/bat-char.bin    11
+upload_hl p /usr/potevio/bat-full.bin    12
+upload_hl p /usr/potevio/bat-null.bin    10
+upload_hl p /usr/potevio/potevio-no_null_box.bin 20
+upload_hl p /usr/potevio/potevio-background.bin 21
+
+ 
+echo "upload end..."
